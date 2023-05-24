@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package com.example.composesubmission.ui.view
 
@@ -26,23 +26,23 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.composesubmission.NavGraph
-import com.example.composesubmission.model.ItemList
+import com.example.composesubmission.model.ItemListURI
 import com.example.composesubmission.ui.theme.ComposeSubmissionTheme
 
-class DetailActivity : ComponentActivity() {
+class DetailActivityUser : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeSubmissionTheme {
+                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -56,7 +56,7 @@ class DetailActivity : ComponentActivity() {
 }
 
 @Composable
-fun DetailScreenUser(item: ItemList, navController: NavController) {
+fun DetailScreenUserUri(item: ItemListURI, navController: NavController) {
     val scrollState = rememberScrollState()
 
     Column {
@@ -83,7 +83,7 @@ fun DetailScreenUser(item: ItemList, navController: NavController) {
         ) {
 
             Image(
-                painter = painterResource(id = item.image),
+                bitmap = item.bitmap?.asImageBitmap()!!,
                 contentDescription = null,
                 modifier = Modifier.size(200.dp)
             )
@@ -128,20 +128,3 @@ fun DetailScreenUser(item: ItemList, navController: NavController) {
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    ComposeSubmissionTheme {
-        DetailScreenUser(
-            item = ItemList(
-                id = 0,
-                image = 0,
-                title = "Title",
-                description = "Description",
-                genres = "Genres"
-            ),
-                navController = rememberNavController()
-        )
-    }
-}
