@@ -713,7 +713,7 @@ fun ListItem(
                         viewModel.editCurrentDataList(index, title, description)
                         setFormVisible(false)
                     }
-            })
+                })
         }
     }
 }
@@ -783,7 +783,7 @@ fun MyAppBar(
                 }
 
                 IconButton(onClick = { navController.navigate("about") }) {
-                    Icon(Icons.Default.Person, contentDescription = "About")
+                    Icon(Icons.Default.Person, contentDescription = "about_page")
                 }
             }
         },
